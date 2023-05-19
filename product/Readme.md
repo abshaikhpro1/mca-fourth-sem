@@ -12,3 +12,6 @@ These additional references should also help you:
 
 * [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
 
+cd mca-fourth-sem\product
+gradlew clean build
+java -jar .\product-0.0.1-SNAPSHOT.jar
