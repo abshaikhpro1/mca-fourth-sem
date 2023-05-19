@@ -83,6 +83,7 @@ button[type="submit"]:hover {
 }
 
 
+
 </style>
 
 <head>
@@ -95,6 +96,9 @@ button[type="submit"]:hover {
 
 <ul class="nav">
     <li class="nav-item">
+        <a class="nav-link active" th:href="@{/search}">Search Product</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link active" th:href="@{/products}">View Products</a>
     </li>
     <li class="nav-item">
@@ -106,6 +110,15 @@ button[type="submit"]:hover {
     <li class="nav-item">
         <a class="nav-link" th:href="@{/products/delete}">Delete Product</a>
     </li>
+
+    <h1>Watch Demo</h1>
+    <div class="video-container">
+
+        <iframe width="700" height="400" src="https://www.youtube.com/embed/yiq4UyGh8zk" title="Demo" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+    </div>
+
 </ul>
 
 <!--<div class="content">-->

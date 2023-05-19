@@ -15,11 +15,9 @@ import java.util.List;
 @Controller
 public class ProductController {
 
-
     @Autowired
     ProductService  productService;
     private List<Product> products = new ArrayList<>();
-
 
     @GetMapping("/home")
     public String home() {
@@ -35,6 +33,14 @@ public class ProductController {
 
         model.addAttribute("products", allProducts);
         return "product-list";
+    }
+
+
+    @GetMapping("/search")
+    public String searchProduct(Model model) {
+        List<Product> allProducts = productService.getAllProducts();
+        model.addAttribute("products", allProducts);
+        return "search-product";
     }
 
     @GetMapping("/products/new")
@@ -87,7 +93,7 @@ public class ProductController {
         return "product-delete";
     }
 
-    // Mapping for deleting a product
+
     @PostMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") Long id) {
         productService.deleteProduct(id);

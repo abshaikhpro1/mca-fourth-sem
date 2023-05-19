@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Live Product Filtering</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').on('input', function() {
+                var searchTerm = $(this).val().toLowerCase();
+                $('.product-row').each(function() {
+                    var productName = $(this).find('.product-name').text().toLowerCase();
+                    if (productName.includes(searchTerm)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+
+    <style>
+
+
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  text-decoration: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 4px;
+}
+
+a:hover {
+  background-color: #45a049;
+}
+
+
+/* product-form.css */
+
+form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+
+</style>
+</head>
+<body>
+<h1>Live Product Filtering</h1>
+<input type="text" id="searchInput" placeholder="Search by product name" />
+
+<h2>Filtered Products</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    <tr th:each="product : ${products}" class="product-row">
+        <td th:text="${product.id}"></td>
+        <td class="product-name" th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+    </tr>
+</table>
+</body>
+</html>
