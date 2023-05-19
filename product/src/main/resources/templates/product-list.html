@@ -102,9 +102,10 @@ button[type="submit"]:hover {
         <td th:text="${product.name}"></td>
         <td th:text="${product.price}"></td>
     </tr>
-    <tr><a class="nav-link" th:href="@{/home}">Home</a></tr>
+    <tr></tr>
 </table>
 
 <a href="/products/new">Add Product</a>
+<a class="nav-link" th:href="@{/home}">Home</a>
 </body>
 </html>

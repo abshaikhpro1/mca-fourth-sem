@@ -104,10 +104,7 @@ button[type="submit"]:hover {
         <td th:text="${product.price}"></td>
         <td><a class="nav-link" th:href="@{/edit/{id}(id=${product.id})}">Update Product</a></td>
     </tr>
-
-    <tr><a class="nav-link" th:href="@{/home}">Home</a></tr>
 </table>
-
-
+<a class="nav-link" th:href="@{/home}">Home</a>
 </body>
 </html>

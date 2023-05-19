@@ -69,33 +69,29 @@ public class ProductController {
     // Mapping for updating a product
     @PostMapping("/update/{id}")
     public String updateProduct(@PathVariable("id") Long id, @ModelAttribute("product") Product updatedProduct) {
-        Product product = getProductById(id);
-        product.setName(updatedProduct.getName());
-        product.setPrice(updatedProduct.getPrice());
-
-        products.add(product);
-
+        productService.updateProduct(id , updatedProduct);
         return "redirect:/products";
+    }
+
+
+    @GetMapping("/products/delete")
+    public String viewshowDeleteUpdateForm( Model model) {
+        model.addAttribute("products", productService.getAllProducts());
+        return "product-list-view-delete.html";
+    }
+
+    @GetMapping("/deleteView/{id}")
+    public String showEditDeleteUpdateForm( @PathVariable("id") Long id,Model model) {
+        Product product =   productService.getProductById(id);
+        model.addAttribute("product", product);
+        return "product-delete";
     }
 
     // Mapping for deleting a product
-    @PostMapping("/products/{id}/delete")
+    @PostMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") Long id) {
-        Product product = getProductById(id);
-        products.remove(product);
-        return "redirect:/products";
+        productService.deleteProduct(id);
+        return "redirect:/products/delete";
     }
 
-    // Utility method to retrieve a product by its ID
-    private Product getProductById(Long id) {
-        // Retrieve the product from the database or other storage based on the given ID
-        // Replace this implementation with your actual data retrieval logic
-        Product product = new Product();
-
-        product.setName("sample");
-        product.setId(101L);
-        product.setPrice(12.5);
-        return product;
-
-    }
 }
