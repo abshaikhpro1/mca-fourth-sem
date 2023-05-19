@@ -2,7 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <style>
 
-
+div {
+  background-color: yellow;
+}
 
 body {
   font-family: Arial, sans-serif;
@@ -91,6 +93,11 @@ button[type="submit"]:hover {
 <body>
 <h1>Product List</h1>
 <link rel="stylesheet" type="text/css" href="classpath:resources/css/product-list.css">
+
+<div th:if="${productDeleted}">
+    <p>The product has been deleted.</p>
+</div>
+
 <table>
     <tr>
         <th>ID</th>
