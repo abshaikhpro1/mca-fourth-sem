@@ -96,7 +96,7 @@ public class ProductController {
 
 
     @PostMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Long id, Model model,  HttpServletRequest request) {
+    public String deleteProduct(@PathVariable("id") Long id, Model model) {
         productService.deleteProduct(id);
         model.addAttribute("productDeleted" , true);
         return "redirect:/products/delete";

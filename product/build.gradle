@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.0.7'
 	id 'io.spring.dependency-management' version '1.1.0'
+	id 'groovy'
 }
 
 group = 'com.example'
@@ -22,8 +23,33 @@ dependencies {
 	runtimeOnly 'com.h2database:h2'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	testImplementation 'org.spockframework:spock-core:2.3-groovy-4.0'
+	testImplementation 'org.spockframework:spock-spring:2.3-groovy-4.0'
+
+	implementation group: 'org.codehaus.gmavenplus', name: 'gmavenplus-plugin', version: '2.1.0'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+	implementation platform('org.apache.groovy:groovy-bom:4.0.10')
+	implementation 'org.apache.groovy:groovy'
+	testImplementation platform("org.spockframework:spock-bom:2.3-groovy-4.0")
+	testImplementation "org.spockframework:spock-core"
+	testImplementation "org.spockframework:spock-junit4"  // you can remove this if your code does not rely on old JUnit 4 rules
+
+	// optional dependencies for using Spock
+	testImplementation "org.hamcrest:hamcrest-core:2.2"
+	testRuntimeOnly 'net.bytebuddy:byte-buddy:1.14.2'
+	testRuntimeOnly "org.objenesis:objenesis:3.3"
+
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
 }
